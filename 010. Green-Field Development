@@ -1,0 +1,57 @@
+@startuml
+
+box "Actors" #f0f0f0
+participant "Product Owner (PO)" as PO
+participant "Team (Devs, QA, Stakeholders)" as Team
+participant "Developer" as Dev
+participant "AI Agent" as AI
+end box
+
+== Green-Field Development: Recommendation Engine ==
+
+box "I. INCEPTION PHASE (Ritual: Mob Elaboration)" #ffffee
+  Team <- AI : Ask clarifying questions (Users? Outcomes?)
+  Team --> AI : Provide clarifications
+  AI -> AI : Elaborate into stories, NFRs, risk descriptions
+  Team -> AI : Review, validate, provide corrections
+  AI -> AI : Compose cohesive stories into Units\n(e.g., User Data, Rec Algorithm, API)
+  PO -> AI : Validate Units, adjust requirements\n(e.g., add GDPR specific considerations)
+  note right of AI: Optional: Generate PRFAQ
+  PO -> AI : Validate PRFAQ & Risks
+end box
+
+box "II. CONSTRUCTION PHASE (Rituals: Mob Programming & Testing)" #eeffff
+  alt Start Unit: "Recommendation Algorithm"
+    Dev -> AI : Establish session, pick assigned Unit
+    AI -> AI : Model core business logic (DDD)\n(Entities: Product, Customer, etc.)
+    Dev -> AI : Review, validate, refine logic (edge cases)
+    AI -> AI : Translate to logical designs (Apply NFRs, patterns, AWS tools)
+    note right of AI: e.g., Recommend event-driven, AWS Lambda
+    Dev -> AI : Evaluate, approve trade-offs, override decisions\n(e.g., override storage to DynamoDB)
+    AI -> AI : Generate executable code (Python) and auto-generate tests
+    Dev -> AI : Review generated code and test scenarios, make adjustments
+  end
+
+  group Testing & Validation (Mob Testing)
+    AI -> AI : Execute all tests (functional, security, performance)
+    AI -> AI : Analyze results, highlight issues
+    AI -> AI : Propose fixes for failed tests
+    Dev -> AI : Validate findings, approve fixes, rerun tests
+  end
+end box
+
+box "III. OPERATIONS PHASE" #eeeeff
+  group Deployment
+    AI -> AI : Package module into Deployment Units
+    Dev -> AI : Approve deployment config, initiate rollout
+  end
+
+  group Observability & Monitoring
+    AI -> AI : Analyze telemetry (metrics, logs, traces)
+    note right of AI: Detect anomalies (e.g., latency spike)
+    AI -> Dev : Detect anomaly, propose scaling / runbook actions\n(e.g., increase DynamoDB throughput)
+    Dev -> AI : Validate recommendations, approve mitigations
+  end
+end box
+
+@endum
