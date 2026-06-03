@@ -1,0 +1,56 @@
+@startuml
+box "Actors" #f0f0f0
+participant "Product Manager (PM)" as PM
+participant "Team (Devs, QA, Stakeholders)" as Team
+participant "Developer" as Dev
+participant "AI Agent" as AI
+end box
+
+== Brown-Field Development: Adding a Feature to an Existing System ==
+
+box "I. INCEPTION PHASE (Ritual: Mob Elaboration)" #ffffee
+  note over AI, Team: This phase mirrors the Green-Field process exactly.
+  Team <- AI : Ask clarifying questions to eliminate ambiguity
+  Team --> AI : Provide clarifications
+  AI -> AI : Elaborate requirements into User Stories, NFRs, and Risks
+  Team -> AI : Review, validate, and adjust the proposed Units of work
+end box
+
+box "II. CONSTRUCTION PHASE (Ritual: Mob Construction)" #eeffff
+  group Step A & B: Reverse-Engineering & Context Building
+    AI -> AI : Analyze existing codebase
+    AI -> AI : Elevate code into higher-level modeling representations
+    
+    note right of AI
+      **Static Model:** Components, descriptions, responsibilities, relationships
+      **Dynamic Model:** Component interactions for significant use cases
+    end note
+    
+    Dev + PM <- AI : Present reverse-engineered Static and Dynamic models
+    Dev + PM -> AI : Review, validate, and correct the architecture models
+  end
+
+  group Step C: Standard Construction & Integration
+    note over AI, Dev: Process aligns back with the standard Green-Field pipeline
+    AI -> AI : Propose Domain & Logical Designs incorporating the old code
+    Dev -> AI : Evaluate trade-offs and approve cloud patterns / AWS services
+    AI -> AI : Generate new code, update existing files, and build tests
+    
+    group Testing & Code Validation (Mob Testing)
+      AI -> AI : Execute test suite (Functional, Regression, Security, NFRs)
+      AI -> AI : Correlate any failure points with recent code/dependency changes
+      AI -> AI : Propose precise bug fixes
+      Dev -> AI : Validate findings, approve fixes, and verify final build
+    end
+  end
+end box
+
+box "III. OPERATIONS PHASE" #eeeeff
+  note over AI, Dev: Deployment and maintenance mirror the Green-Field process.
+  AI -> AI : Package modified code into operational Deployment Units
+  Dev -> AI : Approve configuration and deploy update to production
+  AI -> AI : Monitor live telemetry, matching errors against code changes
+  AI -> Dev : Detect anomalies and propose runtime mitigations via Runbooks
+end box
+
+@endum
